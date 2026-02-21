@@ -1,0 +1,38 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --blue: #1A3BB3;
+  --blue-light: #2347cc;
+  --cream: #F0EDE8;
+  --cream-card: #F8F6F2;
+  --navy: #0f1e5a;
+  --charcoal: #2a2a35;
+  --border: rgba(26, 59, 179, 0.18);
+  --font-hand: 'Caveat', cursive;
+  --font-body: 'DM Sans', sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background-color: var(--cream);
+}
+
+body {
+  margin: 0;
+  background-color: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  min-width: 320px;
+}
+
+#root {
+  min-height: 100vh;
+}

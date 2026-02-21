@@ -1,0 +1,595 @@
+/* ─── Page ─────────────────────────────────────────────── */
+.page {
+  width: 100%;
+  background-color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ─── Hero ──────────────────────────────────────────────── */
+.hero {
+  padding: 3.5rem 1.5rem 3.5rem;
+}
+
+.hero-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.event-title {
+  font-family: var(--font-hand);
+  font-size: clamp(2.6rem, 7vw, 4.2rem);
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.1rem;
+}
+
+.event-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  font-family: var(--font-hand);
+  font-size: clamp(1.3rem, 3.5vw, 1.75rem);
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.02em;
+}
+
+.meta-dot {
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  color: var(--blue);
+  opacity: 0.5;
+  line-height: 1;
+}
+
+.event-location {
+  margin-top: 0.55rem;
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+  font-weight: 400;
+  color: var(--navy);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+/* ─── Divider ───────────────────────────────────────────── */
+.hero::after {
+  content: '';
+  display: block;
+  width: min(320px, 70%);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  margin: 0 auto;
+  opacity: 0.18;
+}
+
+/* ─── Description ───────────────────────────────────────── */
+.description-section {
+  padding: 3rem 1.5rem 3.5rem;
+}
+
+.description-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.description-text {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2.4vw, 1.08rem);
+  line-height: 1.75;
+  color: var(--charcoal);
+  font-weight: 300;
+}
+
+.description-text strong {
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.highlight-text {
+  font-style: italic;
+  color: var(--blue);
+  font-weight: 400;
+  border-left: 3px solid var(--blue);
+  padding-left: 1rem;
+  opacity: 0.9;
+}
+
+/* ─── Companies ─────────────────────────────────────────── */
+.companies-section {
+  padding: 1rem 1.5rem 4rem;
+  background-color: rgba(26, 59, 179, 0.03);
+  border-top: 1.5px solid var(--border);
+}
+
+.companies-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2.25rem;
+  padding-top: 2.5rem;
+}
+
+.section-title {
+  font-family: var(--font-hand);
+  font-size: clamp(2rem, 5.5vw, 3rem);
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1;
+}
+
+.companies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.company-card {
+  background-color: #F5F2ED;
+  border: 1.5px solid var(--blue);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(26, 59, 179, 0.07);
+  padding: 1.25rem 1.35rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.company-card:hover {
+  box-shadow: 0 8px 28px rgba(26, 59, 179, 0.15);
+  transform: translateY(-3px);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.card-name {
+  font-family: var(--font-hand);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.card-link {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.card-industry {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--navy);
+  opacity: 0.5;
+  margin: 0;
+}
+
+.card-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.card-roles,
+.card-positions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tag {
+  display: inline-block;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.role-tag {
+  font-size: 0.72rem;
+  padding: 0.3rem 0.65rem;
+}
+
+.tag-filled {
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.tag-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--blue);
+  color: var(--blue);
+}
+
+.position-tag {
+  font-size: 0.65rem;
+  padding: 0.22rem 0.55rem;
+  background-color: rgba(0, 0, 0, 0.06);
+  color: var(--charcoal);
+  opacity: 0.75;
+}
+
+/* ─── Footer ────────────────────────────────────────────── */
+.page-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2.5rem 1.5rem 3rem;
+  border-top: 1.5px solid var(--border);
+}
+
+.footer-text {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  opacity: 0.5;
+}
+
+/* ─── Filter Bar ────────────────────────────────────────── */
+.filter-bar {
+  background-color: #E8E4DE;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem 1rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.filter-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem 2rem;
+  align-items: flex-start;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+
+.filter-label {
+  font-family: var(--font-hand);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.01em;
+}
+
+.filter-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--blue);
+  background: transparent;
+  color: var(--blue);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, transform 0.12s;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  background-color: rgba(26, 59, 179, 0.08);
+}
+
+.filter-btn--active {
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.filter-btn--active:hover {
+  background-color: var(--blue-light);
+}
+
+
+.filter-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--border);
+}
+
+.filter-count {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--navy);
+  opacity: 0.55;
+}
+
+.filter-clear {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+
+.filter-clear:hover {
+  opacity: 1;
+}
+
+/* ─── Empty State ───────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 1rem;
+  opacity: 0.5;
+}
+
+.empty-state-text {
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--blue);
+  text-align: center;
+}
+
+/* make cards feel clickable */
+.company-card {
+  cursor: pointer;
+}
+
+.company-card:focus-visible {
+  outline: 2.5px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ─── Modal ─────────────────────────────────────────────── */
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 20, 60, 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 100;
+  animation: backdropIn 0.2s ease forwards;
+}
+
+.modal-card {
+  position: relative;
+  background: #F5F2ED;
+  border: 1.5px solid var(--blue);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(15, 20, 60, 0.25);
+  width: 100%;
+  max-width: 640px;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 2.25rem 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: modalIn 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.1rem;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--blue);
+  cursor: pointer;
+  padding: 0.25rem 0.4rem;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+.modal-close:hover {
+  opacity: 1;
+}
+
+.modal-name {
+  font-family: var(--font-hand);
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1.1;
+  margin: 0;
+  padding-right: 2rem;
+}
+
+.modal-name-link {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.modal-name-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.modal-industry-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.modal-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.modal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.modal-label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--navy);
+  opacity: 0.5;
+}
+
+.modal-bio {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--charcoal);
+  font-weight: 300;
+  margin: 0;
+}
+
+.modal-meta-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.modal-meta-row {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.modal-value {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--charcoal);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.modal-contact-btn {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  padding: 0.6rem 1.4rem;
+  background-color: var(--blue);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  border-radius: 999px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background-color 0.18s, transform 0.15s;
+}
+
+.modal-contact-btn:hover {
+  background-color: var(--blue-light);
+  transform: translateY(-1px);
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .companies-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .filter-groups {
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .filter-toggles {
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .companies-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-bar {
+    padding: 1rem;
+  }
+
+  .modal-card {
+    padding: 1.5rem 1.25rem 1.5rem;
+    border-radius: 12px;
+    max-height: 92vh;
+  }
+
+  .modal-meta-row {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
