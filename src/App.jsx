@@ -627,7 +627,7 @@ export default function App() {
       {/* Hero */}
       <section className="hero">
         <div className="hero-inner">
-          <h1 className="event-title">Startup Career Fair</h1>
+          <h1 className="event-title">BASES Startup Career Fair</h1>
           <div className="event-meta">
             <span className="meta-item">February 26th, 2026</span>
             <span className="meta-dot">&middot;</span>
