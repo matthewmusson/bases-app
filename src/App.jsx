@@ -513,6 +513,96 @@ const companies = [
     valuation: "$2B+",
   },
   {
+    name: "Antes",
+    contactEmail: "rongfei@antes.ai",
+    website: "https://www.antes.ai",
+    industry: "AI / Hardware Engineering / Advanced Manufacturing",
+    bio: "Antes is building the AI hardware engineer for complex manufacturers. We partner with iconic automotive and industrial manufacturers and are backed by General Catalyst, Kleiner Perkins, and the parent company of Ferrari. Our founding team spans AI, advanced engineering, and policy — including a former America's Cup world champion, AI researchers from Stanford AI Lab, and former Chairmen of the FAA and FCC.",
+    funding: "Seed",
+    degreeLevels: ["Juniors", "Seniors", "Masters", "PhD"],
+    openToUnderclassmen: true,
+    positions: ["Internship", "Part-time", "Full-time"],
+    visaSponsorship: true,
+    roles: ["Software Engineer", "Growth"],
+    investors: "General Catalyst, Kleiner Perkins, Exor (Ferrari / Stellantis)",
+    valuation: "$50M",
+  },
+  {
+    name: "Takt",
+    contactEmail: "wzunker@taktconnect.com",
+    website: "https://taktconnect.com",
+    industry: "AI & Manufacturing",
+    bio: "We're building a decision-making engine for manufacturing, so factories can think, decide, and act autonomously.",
+    funding: "Pre-seed — $1M",
+    degreeLevels: ["Seniors", "Masters", "PhD"],
+    openToUnderclassmen: true,
+    positions: ["Internship", "Full-time"],
+    visaSponsorship: true,
+    roles: ["Software Engineer", "Growth"],
+    investors: "Pear VC",
+    valuation: "$10M",
+  },
+  {
+    name: "Tamarind Bio",
+    contactEmail: "sherry@tamarind.bio",
+    website: "https://www.tamarind.bio",
+    industry: "AI / Drug Discovery",
+    bio: "Tamarind provides ML infrastructure and tooling for AI-powered drug discovery. 8 of the top 20 pharma companies and tens of thousands of scientists use Tamarind to design protein drugs, improve industrial enzymes, and create cutting-edge molecules.",
+    funding: "Series A",
+    degreeLevels: ["Seniors", "Masters", "PhD"],
+    openToUnderclassmen: false,
+    positions: ["Full-time"],
+    visaSponsorship: null,
+    roles: ["Software Engineer", "Growth"],
+    investors: "YC, Dimension Capital",
+    valuation: "$55M",
+  },
+  {
+    name: "Terac",
+    contactEmail: "zac@terac.com",
+    website: "https://terac.com",
+    industry: "Market Research / AI",
+    bio: "Terac is an expert network that automatically matches people with consistent, high-paying short-term opportunities including expert interviews, user research studies, and AI training.",
+    funding: "Seed — $9M",
+    degreeLevels: ["Sophomores", "Juniors", "Seniors", "Masters"],
+    openToUnderclassmen: true,
+    positions: ["Internship", "Full-time"],
+    visaSponsorship: true,
+    roles: ["Software Engineer", "Growth"],
+    investors: "Emergence Capital, ZFellows, SignalFire",
+    valuation: "$40M",
+  },
+  {
+    name: "Smallest AI",
+    contactEmail: "malikaa@smallest.ai",
+    website: "https://smallest.ai",
+    industry: "AI",
+    bio: "Real-time multi-modal AI.",
+    funding: "Series A",
+    degreeLevels: ["Seniors", "Masters", "PhD"],
+    openToUnderclassmen: true,
+    positions: ["Full-time"],
+    visaSponsorship: true,
+    roles: ["ML Engineer", "Product"],
+    investors: "Sierra, Seligman",
+    valuation: "$100M",
+  },
+  {
+    name: "Eigen Labs",
+    contactEmail: "phil.burgess@eigenlabs.org",
+    website: "https://eigenlabs.org",
+    industry: "Blockchain / AI Infrastructure",
+    bio: "Eigen Labs is the force behind EigenLayer, the developer platform turning the blockchain into a verifiable cloud for apps, data, and AI. Founded by Sreeram Kannan, former UW professor and head of the UW Blockchain Lab.",
+    funding: "$250M",
+    degreeLevels: ["Freshmen", "Sophomores", "Juniors", "Seniors", "Masters", "PhD"],
+    openToUnderclassmen: true,
+    positions: ["Internship", "Full-time"],
+    visaSponsorship: true,
+    roles: ["Software Engineer", "Product", "Growth"],
+    investors: "a16z, Dragonfly",
+    valuation: null,
+  },
+  {
     name: "Mercor",
     contactEmail: "careers@mercor.com",
     website: "https://www.mercor.com",
@@ -541,7 +631,9 @@ function normalizeRole(role) {
   return role
 }
 
-function classifyStage(funding, valuation) {
+function classifyStage(funding, valuation, name) {
+  if (name === 'Mercor' || name === 'Aven') return "Series A+"
+
   const f = (funding || '').toLowerCase()
   const v = (valuation || '').toLowerCase()
 
@@ -589,7 +681,7 @@ function filterCompanies(companies, filters) {
 
     if (filters.roles.size > 0 && !normalizedRoles.some((r) => filters.roles.has(r))) return false
     if (filters.positions.size > 0 && !c.positions.some((p) => filters.positions.has(p))) return false
-    if (filters.stage !== "All" && classifyStage(c.funding, c.valuation) !== filters.stage) return false
+    if (filters.stage !== "All" && classifyStage(c.funding, c.valuation, c.name) !== filters.stage) return false
     if (filters.underclassmen && !c.openToUnderclassmen) return false
     if (filters.visa && c.visaSponsorship !== true) return false
     return true
@@ -886,7 +978,7 @@ export default function App() {
           <p className="description-text">
             Stanford&rsquo;s biggest startup recruiting event is here! Companies at the frontier of AI,
             spatial intelligence, biotech, robotics, infrastructure, and AI-native SaaS.{' '}
-            <strong>$3B+ in total valuations, $300M+ companies.</strong>
+            <strong>$30B+ in total valuations, with multiple $1B+ companies.</strong>
           </p>
           <p className="description-text">
             Advisors include Jeff Dean, Aidan Gomez, and the co-founders of Hugging Face, Slack,
