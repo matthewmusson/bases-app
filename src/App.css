@@ -323,6 +323,26 @@
   text-underline-offset: 3px;
 }
 
+.dinner-external-link {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  background-color: var(--blue);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  border-radius: 999px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background-color 0.18s, transform 0.15s;
+  align-self: flex-start;
+}
+
+.dinner-external-link:hover {
+  background-color: var(--blue-light);
+  transform: translateY(-1px);
+}
+
 @media (max-width: 720px) {
   .dinners-grid {
     grid-template-columns: 1fr;

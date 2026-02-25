@@ -1087,23 +1087,22 @@ export default function App() {
           </div>
           <div className="dinners-grid">
             {[
-              { company: "Embedder", eventId: "evt-eCtFKjbCjWjtoSI" },
-            ].map(({ company, eventId }) => (
-              <div key={eventId} className="dinner-card">
+              { company: "Embedder", url: "https://lu.ma/evt-eCtFKjbCjWjtoSI" },
+              { company: "AGI House", url: "https://urldefense.com/v3/__https://app.agihouse.org/events/stanford-ai-ms-PhD-20260226__;!!G92We9drHetJ8EofZw!fF-AAgXQtb3oz80CYVPdzld9wmBA0dDDVu0geq0d7OrX4rZajyG5b-3bYYb7osjwbJmymWbWXfm-JCkiU5Yg$" },
+            ].map(({ company, url }) => (
+              <div key={company} className="dinner-card">
                 <p
                   className="dinner-label dinner-label--link"
                   onClick={() => setActiveCompany(sortedCompanies.find(c => c.name === company))}
                 >{company}</p>
-                <iframe
-                  src={`https://luma.com/embed/event/${eventId}/simple`}
-                  width="600"
-                  height="450"
-                  frameBorder="0"
-                  style={{ border: '1px solid #bfcbda88', borderRadius: '4px', width: '100%' }}
-                  allow="fullscreen; payment"
-                  aria-hidden="false"
-                  tabIndex="0"
-                />
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="dinner-external-link"
+                >
+                  RSVP to dinner →
+                </a>
               </div>
             ))}
           </div>
