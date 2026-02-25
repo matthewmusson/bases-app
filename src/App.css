@@ -1,3 +1,116 @@
+/* ─── Mobile Tab Bar ────────────────────────────────────── */
+.mobile-tab-bar {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .mobile-tab-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(240, 237, 232, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1.5px solid var(--border);
+    padding: 0.5rem 1rem calc(0.5rem + env(safe-area-inset-bottom));
+    gap: 0.5rem;
+  }
+
+  .mobile-tab {
+    flex: 1;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--blue);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    border-radius: 8px;
+    transition: background-color 0.15s;
+  }
+
+  .mobile-tab:hover,
+  .mobile-tab:active {
+    background-color: rgba(26, 59, 179, 0.08);
+  }
+
+  /* Push page content up so it's not hidden behind the tab bar */
+  .page-footer {
+    padding-bottom: calc(3rem + env(safe-area-inset-bottom) + 3.5rem);
+  }
+}
+
+/* ─── Side Nav ──────────────────────────────────────────── */
+.side-nav {
+  position: fixed;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: flex-end;
+}
+
+.side-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.side-nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--blue);
+  opacity: 0.3;
+  flex-shrink: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  order: 2;
+}
+
+.side-nav-label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue);
+  opacity: 0;
+  transform: translateX(4px);
+  transition: opacity 0.2s, transform 0.2s;
+  order: 1;
+  white-space: nowrap;
+}
+
+.side-nav:hover .side-nav-dot {
+  opacity: 0.6;
+}
+
+.side-nav-item:hover .side-nav-dot {
+  opacity: 1;
+  transform: scale(1.35);
+}
+
+.side-nav-item:hover .side-nav-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 720px) {
+  .side-nav {
+    display: none;
+  }
+}
+
 /* ─── Page ─────────────────────────────────────────────── */
 .page {
   width: 100%;

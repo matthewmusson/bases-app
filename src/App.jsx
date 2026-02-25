@@ -1013,8 +1013,34 @@ export default function App() {
 
   return (
     <div className="page">
+      {/* Mobile bottom tab bar */}
+      <nav className="mobile-tab-bar" aria-label="Page sections">
+        {[
+          { label: "Companies", href: "#companies" },
+          { label: "Dinners", href: "#dinners" },
+        ].map(({ label, href }) => (
+          <a key={href} href={href} className="mobile-tab">
+            {label}
+          </a>
+        ))}
+      </nav>
+
+      {/* Sidebar nav */}
+      <nav className="side-nav" aria-label="Page sections">
+        {[
+          { label: "Top", href: "#top" },
+          { label: "Companies", href: "#companies" },
+          { label: "Dinners", href: "#dinners" },
+        ].map(({ label, href }) => (
+          <a key={href} href={href} className="side-nav-item">
+            <span className="side-nav-dot" />
+            <span className="side-nav-label">{label}</span>
+          </a>
+        ))}
+      </nav>
+
       {/* Hero */}
-      <section className="hero">
+      <section id="top" className="hero">
         <div className="hero-inner">
           <h1 className="event-title">BASES Startup Career Fair</h1>
           <div className="event-meta">
@@ -1048,7 +1074,7 @@ export default function App() {
       </section>
 
       {/* Companies Grid */}
-      <section className="companies-section">
+      <section id="companies" className="companies-section">
         <div className="companies-inner">
           <div className="section-header">
             <h2 className="section-title">Companies</h2>
@@ -1080,7 +1106,7 @@ export default function App() {
       </section>
 
       {/* Dinners */}
-      <section className="dinners-section">
+      <section id="dinners" className="dinners-section">
         <div className="dinners-inner">
           <div className="section-header">
             <h2 className="section-title">Dinners</h2>

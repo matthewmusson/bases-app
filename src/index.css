@@ -23,6 +23,7 @@
 
 html {
   background-color: var(--cream);
+  scroll-behavior: smooth;
 }
 
 body {
