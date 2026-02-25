@@ -673,9 +673,10 @@ const DEFAULT_FILTERS = {
   stage: "All",
   underclassmen: false,
   visa: false,
+  starred: false,
 }
 
-function filterCompanies(companies, filters) {
+function filterCompanies(companies, filters, favorites) {
   return companies.filter((c) => {
     const normalizedRoles = [...new Set(c.roles.map(normalizeRole))]
 
@@ -684,6 +685,7 @@ function filterCompanies(companies, filters) {
     if (filters.stage !== "All" && classifyStage(c.funding, c.valuation, c.name) !== filters.stage) return false
     if (filters.underclassmen && !c.openToUnderclassmen) return false
     if (filters.visa && c.visaSponsorship !== true) return false
+    if (filters.starred && !favorites.has(c.name)) return false
     return true
   })
 }
@@ -694,11 +696,12 @@ function isFiltersActive(filters) {
     filters.positions.size > 0 ||
     filters.stage !== "All" ||
     filters.underclassmen ||
-    filters.visa
+    filters.visa ||
+    filters.starred
   )
 }
 
-function FilterBar({ filters, onChange, onClear, totalCount, filteredCount }) {
+function FilterBar({ filters, onChange, onClear, totalCount, filteredCount, favoritesCount }) {
   const active = isFiltersActive(filters)
 
   return (
@@ -757,6 +760,12 @@ function FilterBar({ filters, onChange, onClear, totalCount, filteredCount }) {
         <div className="filter-group">
           <span className="filter-label">Other</span>
           <div className="filter-toggles">
+            <button
+              className={`filter-btn ${filters.starred ? 'filter-btn--active filter-btn--star' : ''}`}
+              onClick={() => onChange({ ...filters, starred: !filters.starred })}
+            >
+              ★ Starred{favoritesCount > 0 ? ` (${favoritesCount})` : ''}
+            </button>
             <button
               className={`filter-btn ${filters.underclassmen ? 'filter-btn--active' : ''}`}
               onClick={() => onChange({ ...filters, underclassmen: !filters.underclassmen })}
@@ -829,13 +838,22 @@ function PositionBadges({ positions }) {
   )
 }
 
-function CompanyCard({ company, onClick }) {
-  const { name, website, industry, positions, roles } = company
+function CompanyCard({ company, onClick, isFavorite, onToggleFavorite }) {
+  const { name, industry, positions, roles } = company
   return (
     <div className="company-card" onClick={onClick} role="button" tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && onClick()}>
       <div className="card-header">
-        <h3 className="card-name">{name}</h3>
+        <div className="card-name-row">
+          <h3 className="card-name">{name}</h3>
+          <button
+            className={`star-btn ${isFavorite ? 'star-btn--active' : ''}`}
+            onClick={(e) => { e.stopPropagation(); onToggleFavorite(name) }}
+            aria-label={isFavorite ? 'Unstar company' : 'Star company'}
+          >
+            {isFavorite ? '★' : '☆'}
+          </button>
+        </div>
         <p className="card-industry">{industry}</p>
       </div>
       <div className="card-tags">
@@ -850,7 +868,7 @@ function CompanyCard({ company, onClick }) {
   )
 }
 
-function CompanyModal({ company, onClose }) {
+function CompanyModal({ company, onClose, isFavorite, onToggleFavorite }) {
   const {
     name, website, industry, bio, funding, investors, valuation,
     degreeLevels, openToUnderclassmen, visaSponsorship,
@@ -879,6 +897,13 @@ function CompanyModal({ company, onClose }) {
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-card" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
         <button className="modal-close" onClick={onClose} aria-label="Close">✕</button>
+        <button
+          className={`modal-star-btn ${isFavorite ? 'star-btn--active' : ''}`}
+          onClick={() => onToggleFavorite(company.name)}
+          aria-label={isFavorite ? 'Unstar company' : 'Star company'}
+        >
+          {isFavorite ? '★' : '☆'}
+        </button>
 
         {/* Name */}
         <h2 className="modal-name">
@@ -952,7 +977,23 @@ export default function App() {
   const closeModal = useCallback(() => setActiveCompany(null), [])
   const [filters, setFilters] = useState(DEFAULT_FILTERS)
 
-  const filtered = filterCompanies(sortedCompanies, filters)
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const stored = localStorage.getItem('bases-favorites')
+      return stored ? new Set(JSON.parse(stored)) : new Set()
+    } catch { return new Set() }
+  })
+
+  const toggleFavorite = useCallback((name) => {
+    setFavorites((prev) => {
+      const next = new Set(prev)
+      next.has(name) ? next.delete(name) : next.add(name)
+      try { localStorage.setItem('bases-favorites', JSON.stringify([...next])) } catch {}
+      return next
+    })
+  }, [])
+
+  const filtered = filterCompanies(sortedCompanies, filters, favorites)
   const clearFilters = () => setFilters(DEFAULT_FILTERS)
 
   return (
@@ -1003,6 +1044,7 @@ export default function App() {
             onClear={clearFilters}
             totalCount={sortedCompanies.length}
             filteredCount={filtered.length}
+            favoritesCount={favorites.size}
           />
           {filtered.length === 0 ? (
             <EmptyState />
@@ -1013,6 +1055,8 @@ export default function App() {
                   key={company.name}
                   company={company}
                   onClick={() => setActiveCompany(company)}
+                  isFavorite={favorites.has(company.name)}
+                  onToggleFavorite={toggleFavorite}
                 />
               ))}
             </div>
@@ -1027,7 +1071,12 @@ export default function App() {
 
       {/* Modal */}
       {activeCompany && (
-        <CompanyModal company={activeCompany} onClose={closeModal} />
+        <CompanyModal
+          company={activeCompany}
+          onClose={closeModal}
+          isFavorite={favorites.has(activeCompany.name)}
+          onToggleFavorite={toggleFavorite}
+        />
       )}
     </div>
   )
