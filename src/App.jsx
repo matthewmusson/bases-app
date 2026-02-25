@@ -528,6 +528,21 @@ const companies = [
     valuation: "$50M",
   },
   {
+    name: "Tomo",
+    contactEmail: "justin@tomo.ai",
+    website: "https://www.tomo.ai",
+    industry: "Consumer AI",
+    bio: "Tomo is a personal agent that learns what people care about and helps them act on it — exercise, sleep, diet, finance, mental health. Building a living OS for each user, generating dynamic interfaces to empower greater agency in their lives.",
+    funding: "Seed — $5M",
+    degreeLevels: ["Freshmen", "Sophomores", "Juniors", "Seniors", "Masters", "PhD"],
+    openToUnderclassmen: true,
+    positions: ["Internship", "Full-time"],
+    visaSponsorship: null,
+    roles: ["Software Engineer", "Product", "Growth"],
+    investors: "Bain Capital Ventures, Conviction, Basis Set, Accel",
+    valuation: null,
+  },
+  {
     name: "Takt",
     contactEmail: "wzunker@taktconnect.com",
     website: "https://taktconnect.com",
@@ -1061,6 +1076,37 @@ export default function App() {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Dinners */}
+      <section className="dinners-section">
+        <div className="dinners-inner">
+          <div className="section-header">
+            <h2 className="section-title">Dinners</h2>
+          </div>
+          <div className="dinners-grid">
+            {[
+              { company: "Embedder", eventId: "evt-eCtFKjbCjWjtoSI" },
+            ].map(({ company, eventId }) => (
+              <div key={eventId} className="dinner-card">
+                <p
+                  className="dinner-label dinner-label--link"
+                  onClick={() => setActiveCompany(sortedCompanies.find(c => c.name === company))}
+                >{company}</p>
+                <iframe
+                  src={`https://luma.com/embed/event/${eventId}/simple`}
+                  width="600"
+                  height="450"
+                  frameBorder="0"
+                  style={{ border: '1px solid #bfcbda88', borderRadius: '4px', width: '100%' }}
+                  allow="fullscreen; payment"
+                  aria-hidden="false"
+                  tabIndex="0"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
